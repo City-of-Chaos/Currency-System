@@ -7,19 +7,6 @@ function getMoney()
     return {["cash"] = cash, ["bank"] = bank}
 end
 
--- Text on screen.
-function text(text, x, y, scale)
-    SetTextFont(7)
-    SetTextProportional(0)
-    SetTextScale(scale, scale)
-    SetTextEdge(1, 0, 0, 0, 255)
-    SetTextDropShadow(0, 0, 0, 0,255)
-    SetTextOutline()
-    SetTextJustification(1)
-    SetTextEntry("STRING")
-    AddTextComponentString(text)
-    DrawText(x, y)
-end
 
 
 -- Trigger the server event "getMoney" when the resource starts.
@@ -40,5 +27,26 @@ end)
 RegisterNetEvent("updateMoney")
 AddEventHandler("updateMoney", function(updatedCash, updatedBank)
     cash, bank = updatedCash, updatedBank
+end)
+
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(100)
+        local moneyData = getMoney()  
+
+            SendNUIMessage({
+                display = true,
+                cash = moneyData.cash,
+                bank = moneyData.bank
+            })
+
+        if IsPauseMenuActive() then
+            BeginScaleformMovieMethodOnFrontendHeader("SET_HEADING_DETAILS")
+            ScaleformMovieMethodAddParamPlayerNameString(GetPlayerName(PlayerId()))
+            PushScaleformMovieFunctionParameterString("Cash: $" .. cash)
+            PushScaleformMovieFunctionParameterString("Bank: $" .. bank)
+            EndScaleformMovieMethod()
+        end
+    end
 end)
 
