@@ -24,3 +24,9 @@ server_exports {
 }
 
 dependency "oxmysql"
+
+files {
+    'ui/*'
+}
+
+ui_page 'ui/index.html'
