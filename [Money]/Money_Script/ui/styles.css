@@ -1,0 +1,44 @@
+* {
+    font-family: "Pricedown";
+    font-size: 35px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.money-hud {
+    position: absolute;
+    top: 10px;
+    color: white;
+    left: 90%;
+    transform: translateX(-100%);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.money-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.money-icon {
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+    margin-right: 5px;
+}
+
+.money-label {
+    margin-right: 5px;
+}
+
+.money-amount {
+    color: #8CFF54;
+}
+
+.cash-section {
+    color: #8CFF54; /* Light green color for cash */
+}
