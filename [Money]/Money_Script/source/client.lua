@@ -42,20 +42,3 @@ AddEventHandler("updateMoney", function(updatedCash, updatedBank)
     cash, bank = updatedCash, updatedBank
 end)
 
--- Check how much money player has when they join. And display it on screen.
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(0)
-        text("💵", 0.885, 0.028, 0.35)
-        text("💳", 0.885, 0.068, 0.35)
-        text("~g~$~w~".. cash, 0.91, 0.03, 0.55)
-        text("~b~$~w~".. bank, 0.91, 0.07, 0.55)
-        if IsPauseMenuActive() then
-            BeginScaleformMovieMethodOnFrontendHeader("SET_HEADING_DETAILS")
-            ScaleformMovieMethodAddParamPlayerNameString(GetPlayerName(PlayerId()))
-            PushScaleformMovieFunctionParameterString("Cash: $" .. cash)
-            PushScaleformMovieFunctionParameterString("Bank: $" .. bank)
-            EndScaleformMovieMethod()
-        end
-    end
-end)
