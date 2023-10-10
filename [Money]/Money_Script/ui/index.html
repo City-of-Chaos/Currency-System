@@ -1,1 +1,44 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link href="https://db.onlinewebfonts.com/c/4cca73663be210d1abb8d4c8879cd5ce?family=Pricedown" rel="stylesheet">
+
+</head>
+<body style="display: none;">
+    <div class="money-hud">
+        <div class="money-section">
+            </div>
+            <div class="money-label">Cash:</div>
+            <div class="money-amount" id="cash-amount">
+                $0
+            </div>
+        </div>
+        <div class="money-section">
+            </div>
+            <div class="money-label">Bank:</div>
+            <div class="money-amount" id="bank-amount">
+                $0
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    window.addEventListener('message', function (event) {
+        var moneyData = event.data;
+
+        if (moneyData.display) {
+            document.body.style.display = 'block';
+
+            document.getElementById('cash-amount').textContent = '$' + moneyData.cash;
+            document.getElementById('bank-amount').textContent = '$' + moneyData.bank;
+        } else {
+            document.body.style.display = 'none';
+        }
+    });
+});
+
+    </script>
+</body>
+</html>
